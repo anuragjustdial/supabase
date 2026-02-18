@@ -3,6 +3,7 @@ import { errorHandler } from "./middleware/errorHandler.js";
 import { loggerHandler } from "./middleware/loggerHandler.js";
 import categoryRouter from "./routes/categories.js";
 import productRouter from "./routes/products.js";
+import authRouter from "./routes/auth.js";
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(loggerHandler);
 
 app.use("/api/categories", categoryRouter);
 app.use("/api/products", productRouter);
+app.use("/api/auth", authRouter);
 
 app.get("/api/crash", (req, res) => {
   throw new Error("Simulated server crash");

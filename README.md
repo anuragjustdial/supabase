@@ -83,3 +83,17 @@ The server will start on `http://localhost:3000`.
 - `POST /api/products` — Create a product
 - `PUT /api/products/:id` — Update a product
 - `DELETE /api/products/:id` — Delete a product
+
+## HTTP Status Codes
+
+| Code | Meaning                 | Description                                          |
+|------|-------------------------|------------------------------------------------------|
+| 200  | OK                      | Request succeeded                                    |
+| 201  | Created                 | Resource created successfully                        |
+| 400  | Bad Request             | Invalid or missing input from client                 |
+| 401  | Unauthorized            | Not authenticated (missing or invalid token)         |
+| 403  | Forbidden               | Authenticated but lacks permission                   |
+| 404  | Not Found               | Requested resource doesn't exist                     |
+| 409  | Conflict                | Resource already exists (e.g., duplicate email)      |
+| 422  | Unprocessable Entity    | Request body failed validation                       |
+| 500  | Internal Server Error   | Unexpected server-side error                         |
