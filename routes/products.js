@@ -2,6 +2,7 @@ import { Router } from "express";
 import { supabase } from "../supabaseClient.js";
 import { asyncHander } from "../middleware/asyncHandler.js";
 import { validate, productScheme, productUpdateScheme } from "../middleware/validate.js";
+import { authenticate } from "../middleware/auth.js";
 
 const router = Router();
 
@@ -45,8 +46,8 @@ router.get("/:id", asyncHander(async (req, res) => {
     return res.status(200).json(data);
 }));
 
-// Add product
-router.post("/", validate(productScheme), asyncHander(async (req, res) => {
+// Add product 🍔
+router.post("/", authenticate, validate(productScheme), asyncHander(async (req, res) => {
   const { name, description, price, category_id } = req.body;
 
   const { data, error } = await supabase
@@ -63,7 +64,7 @@ router.post("/", validate(productScheme), asyncHander(async (req, res) => {
 }));
 
 // Update product by product ID
-router.put("/:id", validate(productUpdateScheme), asyncHander(async (req, res) => {
+router.put("/:id", authenticate, validate(productUpdateScheme), asyncHander(async (req, res) => {
   const { id: productId } = req.params;
   const { name, description, price, category_id } = req.body;
 
@@ -88,7 +89,7 @@ router.put("/:id", validate(productUpdateScheme), asyncHander(async (req, res) =
 }));
 
 // Delete product by product ID
-router.delete("/:id", asyncHander(async (req, res) => {
+router.delete("/:id", authenticate, asyncHander(async (req, res) => {
   const { id: productId } = req.params;
 
   if (!productId) {
