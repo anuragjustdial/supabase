@@ -74,6 +74,8 @@ async function main() {
   // await insertProduct();
   // await updateProductPriceByName();
   // await deleteProductByName();
+  // for the first time we are using neo vim let find out the configuration and what else need to be added to it 
+  // in the mean while we will create a long script which which can track the progress
 }
 
 main();
